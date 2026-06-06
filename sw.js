@@ -1,4 +1,4 @@
-const CACHE = 'sakti-v8-data367-cache';
+const CACHE = 'sakti-v9-icons-cache';
 const URLS = ['./'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
@@ -11,7 +11,6 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 self.addEventListener('fetch', e => {
-  // Network first for HTML (always get fresh data), cache fallback for offline
   if (e.request.url.endsWith('.html') || e.request.url.endsWith('/')) {
     e.respondWith(
       fetch(e.request).then(r => {
