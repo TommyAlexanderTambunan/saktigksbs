@@ -1,4 +1,4 @@
-const CACHE = 'sakti-v9-icons-cache';
+const CACHE = 'sakti-v10-newlogo-cache';
 const URLS = ['./'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
@@ -12,13 +12,11 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.url.endsWith('.html') || e.request.url.endsWith('/')) {
-    e.respondWith(
-      fetch(e.request).then(r => {
-        const clone = r.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-        return r;
-      }).catch(() => caches.match(e.request))
-    );
+    e.respondWith(fetch(e.request).then(r => {
+      const clone = r.clone();
+      caches.open(CACHE).then(c => c.put(e.request, clone));
+      return r;
+    }).catch(() => caches.match(e.request)));
   } else {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
   }
