@@ -1,4 +1,4 @@
-const CACHE = 'sakti-v11-logo2-cache';
+const CACHE = 'sakti-v12-logo3-cache';
 const URLS = ['./'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
